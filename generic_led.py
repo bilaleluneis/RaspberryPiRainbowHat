@@ -48,8 +48,8 @@ class RainbowShield:
 
 def main():
     while True:
-        RainbowShield(0.1).blink_left_right()
-        RainbowShield(0.1).blink_right_left()
+        RainbowShield(0.08).blink_left_right()
+        RainbowShield(0.08).blink_right_left()
 
 
 if __name__ == "__main__":
