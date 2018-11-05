@@ -11,7 +11,7 @@ def blink_from_right_to_left():
         rh.rainbow.clear()
         rh.rainbow.set_pixel(light, 255, 0, 0)
         rh.rainbow.show()
-        time.sleep(0.2)
+        time.sleep(0.1)
 
 
 def blink_from_left_right():
@@ -19,7 +19,7 @@ def blink_from_left_right():
         rh.rainbow.clear()
         rh.rainbow.set_pixel(light, 255, 0, 0)
         rh.rainbow.show()
-        time.sleep(0.2)
+        time.sleep(0.1)
 
 
 def main():
