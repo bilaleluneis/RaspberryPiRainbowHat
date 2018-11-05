@@ -21,7 +21,7 @@ class GenericLed:
     def __led_off(self):
         rh.rainbow.clear()
 
-    def _blink(self):
+    def blink(self):
         self.__led_on()
         time.sleep(self.__sleep_time)
         self.__led_off()
@@ -39,17 +39,29 @@ class RainbowShield:
 
     def blink_left_right(self):
         for i in range(7):
-            RedLed(led_index=i, sleep_time=self.__sleep_time)._blink()
+            RedLed(led_index=i, sleep_time=self.__sleep_time).blink()
 
     def blink_right_left(self):
         for i in range(6, 0, -1):
-            RedLed(led_index=i, sleep_time=self.__sleep_time)._blink()
+            RedLed(led_index=i, sleep_time=self.__sleep_time).blink()
+
+
+class RainBowShield:
+    def __init__(self, sleep_time: int):
+        self.__leds = []
+        for index in range(7):
+            self.__leds.append(RedLed(index, sleep_time))
+
+    def run(self):
+        while True:
+            for led in range(7):
+                self.__leds[led].blink()
+            for led in range(6, 0, -1):
+                self.__leds[led].blink()
 
 
 def main():
-    while True:
-        RainbowShield(0.08).blink_left_right()
-        RainbowShield(0.08).blink_right_left()
+    RainBowShield(0.5).run()
 
 
 if __name__ == "__main__":
