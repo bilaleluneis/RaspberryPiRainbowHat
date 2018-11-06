@@ -19,7 +19,8 @@ class GenericLed:
         rh.rainbow.show()
 
     def __led_off(self):
-        rh.rainbow.clear()
+        rh.rainbow.set_pixel(self.__led_index, 0, 0, 0)
+        rh.rainbow.show()
 
     def blink(self):
         self.__led_on()
@@ -47,7 +48,7 @@ class RainbowShield:
 
 
 class RainBowShield:
-    def __init__(self, sleep_time: int):
+    def __init__(self, sleep_time: float):
         self.__leds = []
         for index in range(7):
             self.__leds.append(RedLed(index, sleep_time))
