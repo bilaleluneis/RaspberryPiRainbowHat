@@ -147,7 +147,7 @@ class RainbowShield:
 
 def main():
     led_0: RainbowLed = RainbowLed(0, "white", 1)
-    for color_name, color in colors.items():
+    for color_name, _ in colors.items():
         led_0.color = color_name
         led_0.blink()
 
