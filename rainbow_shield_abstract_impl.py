@@ -1,4 +1,3 @@
-
 __author__ = "Bilal El Uneis"
 __since__ = "November 2018"
 __email__ = "bilaleluneis@gmail.com"
@@ -86,7 +85,6 @@ class Timer(object):
 Simple Map / Dictionary of basic colors.
 """
 
-
 colors: Dict[str, Color] = {
     "red": Color(255, 0, 0),
     "orange": Color(255, 127, 0),
@@ -94,9 +92,9 @@ colors: Dict[str, Color] = {
     "green": Color(0, 255, 0),
     "blue": Color(0, 0, 255),
     "violet": Color(139, 0, 255),
-    "white": Color(255, 255, 255)
+    "white": Color(255, 255, 255),
+    "none": Color(0, 0, 0)
 }
-
 
 """
 RainbowLed is class that represents a LED on a RainbowShield.
@@ -140,16 +138,47 @@ class RainbowLed(Led, Timer):
         self.off()
 
 
-# TODO: still need to implement
+"""
+Simple Class representing Rainbow Shield, composed of 7 Rainbow LEDs.
+also overrode the [] operator to pull from dictionary in a simple way.
+"""
+
+
 class RainbowShield:
-    pass
+    def __init__(self):
+        self.__leds: Dict[str, RainbowLed] = {
+            "led0": RainbowLed(0, "none", 0.0),
+            "led1": RainbowLed(1, "none", 0.0),
+            "led2": RainbowLed(2, "none", 0.0),
+            "led3": RainbowLed(3, "none", 0.0),
+            "led4": RainbowLed(4, "none", 0.0),
+            "led5": RainbowLed(5, "none", 0.0),
+            "led6": RainbowLed(6, "none", 0.0)
+        }
+
+    def __getitem__(self, index: int):
+        key: str = "led" + str(index)
+        led: RainbowLed = None
+        for a_name, a_led in self.__leds.items():
+            if a_name == key:
+                led = a_led
+
+        if led is None:
+            raise Exception("Invalid index passed... valid are 0 to 6 !")
+        else:
+            return led
 
 
 def main():
-    led_0: RainbowLed = RainbowLed(0, "white", 1)
-    for color_name, _ in colors.items():
-        led_0.color = color_name
-        led_0.blink()
+    rainbow_shield: RainbowShield = RainbowShield()
+    rainbow_shield[0].dealy = 0.5
+    rainbow_shield[0].color = "red"
+    rainbow_shield[6].dealy = 0.2
+    rainbow_shield[6].color = "blue"
+
+    while True:
+        rainbow_shield[0].blink()
+        rainbow_shield[6].blink()
 
 
 if __name__ == "__main__":
