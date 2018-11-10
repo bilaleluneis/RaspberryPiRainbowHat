@@ -24,6 +24,14 @@ class Led(ABC):
         return self.__id
 
     @abstractmethod
+    def on(self):
+        pass
+
+    @abstractmethod
+    def off(self):
+        pass
+
+    @abstractmethod
     def blink(self):
         pass
 
