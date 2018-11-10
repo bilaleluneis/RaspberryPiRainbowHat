@@ -6,6 +6,7 @@ from abc import ABC, abstractmethod
 from typing import Tuple, Dict
 from rainbowhat import rainbow
 from time import sleep
+import random
 
 """
 Led is abstract class, so it can't be instantiated. 
@@ -179,14 +180,15 @@ class RainbowShield:
 
 def main():
     rainbow_shield: RainbowShield = RainbowShield()
-    rainbow_shield[0].delay = 0.5
-    rainbow_shield[0].color = "red"
-    rainbow_shield[6].delay = 0.2
-    rainbow_shield[6].color = "blue"
 
-    while True:
-        rainbow_shield[0].blink()
-        rainbow_shield[6].blink()
+    for index in range(7):
+        led: RainbowLed = rainbow_shield[index]
+        led.delay = 0.5
+        random_color, _ = random.choice(list(colors.items()))
+        led.color = random_color
+        for num_blinks in range(3):
+            led.blink()
+        led.on()
 
 
 if __name__ == "__main__":
