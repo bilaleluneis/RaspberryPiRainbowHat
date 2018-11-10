@@ -171,9 +171,9 @@ class RainbowShield:
 
 def main():
     rainbow_shield: RainbowShield = RainbowShield()
-    rainbow_shield[0].dealy = 0.5
+    rainbow_shield[0].delay = 0.5
     rainbow_shield[0].color = "red"
-    rainbow_shield[6].dealy = 0.2
+    rainbow_shield[6].delay = 0.2
     rainbow_shield[6].color = "blue"
 
     while True:
